@@ -20,7 +20,7 @@ const App = () => {
 
     try {
       console.log(data);
-      const response = await axios.post("http://localhost:3000/chat", {
+      const response = await axios.post("https://chatbox-server-optu.onrender.com/chat", {
         message,
         data,
       });
@@ -41,7 +41,7 @@ const App = () => {
   ];
 
   const handleData = async () => {
-    const response = await axios.post("http://localhost:3000/shopify", {});
+    const response = await axios.post("https://chatbox-server-optu.onrender.com/shopify", {});
     const products = response.data.data.products.map(
       (product) => product.title
     );
