@@ -5,6 +5,10 @@ import "./App.css";
 import Message from "./components/Message";
 import UserInput from "./components/UserInput";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
+axios.defaults.baseURL = apiUrl;
+
 const App = () => {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +24,7 @@ const App = () => {
 
     try {
       console.log(data);
-      const response = await axios.post("https://chatbox-server-optu.onrender.com/chat", {
+      const response = await axios.post("/chat", {
         message,
         data,
       });
@@ -41,7 +45,7 @@ const App = () => {
   ];
 
   const handleData = async () => {
-    const response = await axios.post("https://chatbox-server-optu.onrender.com/shopify", {});
+    const response = await axios.post("/shopify", {});
     const products = response.data.data.products.map(
       (product) => product.title
     );
