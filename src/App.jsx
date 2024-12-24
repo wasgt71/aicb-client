@@ -9,6 +9,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 axios.defaults.baseURL = apiUrl;
 
+
 const App = () => {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,9 +46,11 @@ const App = () => {
   ];
 
   const handleData = async () => {
+    console.log(apiUrl);
     const response = await axios.post("/shopify", {});
     const products = response.data.data.products.map(
       (product) => product.title
+      
     );
 
     /*const products = response.data.data.map((product) => product.title);*/
