@@ -19,10 +19,13 @@ const App = () => {
 
     try {
       console.log(data);
-      const response = await axios.post("https://chatbox-server-optu.onrender.com/chat", {
-        message,
-        data,
-      });
+      const response = await axios.post(
+        "https://chatbox-server-optu.onrender.com/chat",
+        {
+          message,
+          data,
+        }
+      );
       const aiMessage = response.data;
       console.log(response);
       setMessages([...newMessages, { text: aiMessage, sender: "Nuusero-ai" }]);
@@ -33,25 +36,23 @@ const App = () => {
     }
   };
 
-  const policyUrl = [
-    "https://2616e3-9d.myshopify.com/88170922298/policies/39613530426",
-    "https://2616e3-9d.myshopify.com/88170922298/policies/39613956410",
-    "https://2616e3-9d.myshopify.com/88170922298/policies/39613792570",
-  ];
-
   const handleData = async () => {
-    const response = await axios.post("https://chatbox-server-optu.onrender.com/shopify", {});
+    const response = await axios.post(
+      "https://chatbox-server-optu.onrender.com/shopify",
+      {}
+    );
     const products = response.data.data.products.map(
       (product) => product.title
-      
     );
 
-    /*const products = response.data.data.map((product) => product.title);*/
     const store = response.data.home;
     console.log(response);
     setData([store, products]);
+  };
 
-    
+  const openApp = async () => {
+    setLock(true);
+    await handleUserMessage("Hey");
   };
 
   useEffect(() => {
@@ -67,7 +68,7 @@ const App = () => {
   return (
     <>
       {!lock && (
-        <button className="open-app" onClick={(e) => setLock(true)}>
+        <button className="open-app" onClick={openApp}>
           CHAT NOW
         </button>
       )}
